@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Arya Gilang Prasetya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#f9f9f9] text-[#111111] font-sans antialiased">
+
+    <!-- Sticky Navbar -->
+    <nav class="sticky top-0 z-50 bg-[#f9f9f9]/90 backdrop-blur-md border-b border-gray-200 px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <a href="{% url 'index' %}" class="bg-black text-white font-bold p-2 text-sm uppercase tracking-wider rounded">AG</a>
+            <div>
+                <span class="font-bold block text-lg">Arya Gilang Prasetya</span>
+                <span class="text-xs text-gray-500 border border-gray-300 rounded px-1.5 py-0.5 bg-white">Information Systems Student</span>
+            </div>
+        </div>
+        
+        <div class="flex items-center space-x-8 font-medium text-gray-600">
+            <a href="{% url 'index' %}#home" class="hover:text-black transition">Home</a>
+            <a href="{% url 'index' %}#projects" class="hover:text-black transition">Projects</a>
+            <a href="{% url 'index' %}#experience" class="hover:text-black transition">Experience</a>
+            <a href="{% url 'index' %}#contact" class="hover:text-black transition text-black border border-black rounded-md px-4 py-1.5 bg-white hover:bg-black hover:text-white transition-all">Get in touch</a>
+        </div>
+    </nav>
+
+    <!-- Main Content Split Layout -->
+    <main class="max-w-7xl mx-auto px-8 py-16">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-16">
+            
+            <!-- Left Side: Profile Intro & Resume Download -->
+            <div class="w-full md:w-5/12 space-y-8">
+                <div class="space-y-4">
+                    <h1 class="text-6xl font-bold tracking-tight text-gray-900 leading-none">
+                        Arya Gilang<br>Prasetya
+                    </h1>
+                    <div class="inline-block text-xs font-mono text-gray-400 border border-gray-200 rounded bg-white px-2.5 py-1">
+                        information_systems · web_builder · project_manager · database · marketing
+                    </div>
+                </div>
+
+                <p class="text-gray-600 text-lg leading-relaxed">
+                    Information Systems student at Universitas Indonesia. I focus on bridging software programming with platform structure design, transforming analytical blueprints into working digital modules. My academic track and organizational ventures span both system engineering and public marketing architectures.
+                </p>
+
+                <div class="pt-2">
+                    <!-- Downloadable PDF Link matching image_bb24da.png -->
+                    <a href="{% static 'core/Arya Gilang Prasetya_CV.pdf' %}" download class="font-mono text-sm font-bold text-black border-b-2 border-black pb-1 hover:text-gray-500 hover:border-gray-500 transition-all inline-flex items-center space-x-1">
+                        <span>resume.pdf</span>
+                        <span>&darr;</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Side: Portrait Image & Technical Grid Table -->
+            <div class="w-full md:w-7/12 space-y-10">
+                <!-- Profile Image Frame -->
+                <div class="w-full h-64 bg-gray-200 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                    <img src="{% static 'core/images/landscape_profile.jpeg' %}" alt="Arya Gilang Prasetya" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Skills Table matching image_bb24da.png -->
+                <div class="divide-y divide-gray-200 border-t border-b border-gray-200 font-mono text-sm">
+                    <!-- Coursework Row -->
+                    <div class="py-4 flex flex-col sm:flex-row items-start gap-4 sm:gap-12">
+                        <span class="text-gray-400 uppercase tracking-wider text-xs w-28 shrink-0 pt-0.5">Coursework</span>
+                        <span class="text-gray-800 leading-relaxed text-sm">Information Technology Project Management, IS Analysis and Design, Database, Platform Based Programming, Data Structure and Algorithm, Operation System, Artificial Intelligence and Data Science Foundations.</span>
+                    </div>
+
+                    <!-- Programming Row -->
+                    <div class="py-4 flex flex-col sm:flex-row items-start gap-4 sm:gap-12">
+                        <span class="text-gray-400 uppercase tracking-wider text-xs w-28 shrink-0 pt-0.5">Programming</span>
+                        <span class="text-gray-800 leading-relaxed text-sm">HTML/CSS, Web Structure, Java, Python, SQL, Flutter, Django, Figma, Application Design & Wireframing, Tailwind, PostgreSQL, Spring Boot, TypeScript, Vue.js</span>
+                    </div>
+
+                    <!-- Software Row -->
+                    <div class="py-4 flex flex-col sm:flex-row items-start gap-4 sm:gap-12">
+                        <span class="text-gray-400 uppercase tracking-wider text-xs w-28 shrink-0 pt-0.5">Software</span>
+                        <span class="text-gray-800 leading-relaxed text-sm">Google Workspace, Microsoft Workspace, Docker, DBeaver, Figma</span>
+                    </div>
+
+                    <!-- Language Row -->
+                    <div class="py-4 flex flex-col sm:flex-row items-start gap-4 sm:gap-12">
+                        <span class="text-gray-400 uppercase tracking-wider text-xs w-28 shrink-0 pt-0.5">Language</span>
+                        <span class="text-gray-800 leading-relaxed text-sm">Indonesian (native), English (advance)</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="border-t border-gray-200 bg-white py-8 text-center text-xs font-mono text-gray-400">
+        &copy; 2026 Arya Gilang Prasetya. All rights reserved.
+    </footer>
+
+</body>
+</html>

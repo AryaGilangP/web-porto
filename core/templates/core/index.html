@@ -1,0 +1,245 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arya Gilang Prasetya | Portfolio</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#f9f9f9] text-[#111111] font-sans antialiased">
+
+    <!-- Sticky Navbar -->
+    <nav class="sticky top-0 z-50 bg-[#f9f9f9]/90 backdrop-blur-md border-b border-gray-200 px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <div class="bg-black text-white font-bold p-2 text-sm uppercase tracking-wider rounded">AG</div>
+            <div>
+                <span class="font-bold block text-lg">Arya Gilang Prasetya</span>
+                <span class="text-xs text-gray-500 border border-gray-300 rounded px-1.5 py-0.5 bg-white">Information Systems Student</span>
+            </div>
+        </div>
+        
+        <div class="flex items-center space-x-8 font-medium text-gray-600">
+            <a href="#home" class="hover:text-black transition">Home</a>
+            <a href="{% url 'about' %}" class="hover:text-black transition">About</a>
+            <a href="#projects" class="hover:text-black transition">Projects</a>
+            <a href="#experience" class="hover:text-black transition">Experience</a>
+            <a href="#contact" class="hover:text-black transition text-black border border-black rounded-md px-4 py-1.5 bg-white hover:bg-black hover:text-white transition-all">Get in touch</a>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-8">
+
+        <!-- 1. Hero Section (#home) -->
+        <section id="home" class="min-h-[calc(100vh-80px)] flex flex-col md:flex-row items-center justify-between py-12 gap-12 border-b border-gray-200">
+            <!-- Left Side Info -->
+            <div class="w-full md:w-3/5 space-y-6">
+                <div class="flex items-center space-x-2 text-xs font-mono text-green-600 uppercase tracking-wider">
+                    <span class="h-2 w-2 rounded-full bg-green-500 inline-block animate-pulse"></span>
+                    <span>open_to_work · Jakarta, ID · 2026</span>
+                </div>
+                
+                <h1 class="text-6xl font-bold tracking-tight leading-none text-gray-900">
+                    Arya Gilang<br><span class="text-gray-800">Prasetya</span>
+                </h1>
+                
+                <p class="text-sm font-mono text-gray-400 tracking-wide">
+                    information_systems · web_builder · ui_designer · project_manager · database · marketing
+                </p>
+                
+                <p class="text-xl text-gray-600 max-w-xl leading-relaxed">
+                    I build web applications and digital management systems. Currently studying Information Systems at the University of Indonesia, bridging software architecture with strategic product solutions.
+                </p>
+                
+                <div class="flex items-center space-x-4 pt-4">
+                    <a href="#projects" class="bg-black text-white font-medium px-6 py-3 rounded-md hover:bg-gray-800 transition shadow-sm">View projects</a>
+                    <a href="#contact" class="border border-gray-300 bg-white text-gray-700 font-medium px-6 py-3 rounded-md hover:bg-gray-50 transition">Contact info</a>
+                </div>
+            </div>
+
+            <!-- Right Side Highlight Card -->
+            <div class="w-full md:w-2/5 max-w-sm bg-white rounded-xl border border-gray-200 p-4 shadow-sm space-y-4">
+                <div class="w-full h-80 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400 relative overflow-hidden">
+                    <img src="{% static 'core/images/profile_picture.jpeg' %}" alt="Arya Gilang Prasetya" class="w-full h-full object-cover">
+                </div>
+                <div class="divide-y divide-gray-100 font-mono text-sm">
+                    <div class="flex justify-between py-2"><span class="text-gray-400">location</span><span class="text-right">Kota Depok / Jakarta</span></div>
+                    <div class="flex justify-between py-2"><span class="text-gray-400">education</span><span class="text-right">Universitas Indonesia</span></div>
+                    <div class="flex justify-between py-2"><span class="text-gray-400">status</span><span class="text-green-600 font-bold">● SINGLE</span></div>
+                    <div class="flex justify-between py-2"><span class="text-gray-400">github</span><span class="text-right"><a href="https://github.com/AryaGilangP" target="_blank" class="underline hover:text-gray-600">AryaGilangP</a></span></div>
+                    <div class="flex justify-between py-2"><span class="text-gray-400">gitlab</span><span class="text-right"><a href="https://gitlab.cs.ui.ac.id/arya.gilang" target="_blank" class="underline hover:text-gray-600">arya.gilang</a></span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Projects Section (#projects) -->
+        <section id="projects" class="py-20 border-b border-gray-200 min-h-screen">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold tracking-tight">Academic & Group Projects</h2>
+                <p class="text-gray-500 mt-2">A collection of web platforms and interactive systems engineered collectively.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Dynamic loop reading from views.PROJECTS_DATA -->
+                {% for slug, data in projects.items %}
+                <div class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <span class="text-xs font-mono text-gray-400 block mb-2">{{ data.subtitle }}</span>
+                        <h3 class="text-xl font-bold mb-2">{{ data.title }}</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">{{ data.description }}</p>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <div class="flex flex-wrap gap-1 font-mono text-xs text-gray-500">
+                            {% for tech in data.stack|slice:":3" %}
+                            <span class="bg-gray-100 px-2 py-1 rounded">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                        <!-- Dynamic Link to Details Subpage -->
+                        <a href="{% url 'project_detail' project_slug=slug %}" class="text-sm font-bold text-black underline hover:text-gray-600">View Details</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- 3. Experience Section (#experience) -->
+        <section id="experience" class="py-20 border-b border-gray-200 min-h-screen space-y-16">
+            
+            <!-- Work Experience Subsection -->
+            <div>
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold tracking-tight">Work Experience</h2>
+                    <p class="text-gray-500 mt-2">Professional roles.</p>
+                </div>
+                
+                <div class="space-y-12 max-w-4xl">
+                    <!-- Katalis AI -->
+                    <div class="relative pl-8 border-l-2 border-black">
+                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-black"></div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Product Intern</h3>
+                                <p class="text-md font-medium text-gray-600">Katalis AI</p>
+                            </div>
+                            <span class="text-xs font-mono bg-gray-100 px-2.5 py-1 rounded text-gray-500 mt-1 sm:mt-0">Jul 2026 — Present</span>
+                        </div>
+                        <ul class="list-disc list-outside ml-4 text-gray-600 text-sm space-y-2 leading-relaxed">
+                            <li>Write and maintain product documentation: PRDs, user stories, release notes, and internal SOPs.</li>
+                            <li>Conduct research tasks including competitor analysis, feature benchmarking, and UX references.</li>
+                            <li>Work across teams product, engineering, marketing, and operations to understand their current flow.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Organizational Experience Subsection -->
+            <div>
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold tracking-tight">Organizational Experience</h2>
+                    <p class="text-gray-500 mt-2">Public Relations and marketing positions held within Fasilkom UI.</p>
+                </div>
+                
+                <div class="space-y-12 max-w-4xl">
+                    <!-- BEM Fasilkom UI -->
+                    <div class="relative pl-8 border-l-2 border-gray-200">
+                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-gray-400"></div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Deputy 2 of Public Relations</h3>
+                                <p class="text-md font-medium text-gray-600">Badan Eksekutif Mahasiswa Fasilkom UI</p>
+                            </div>
+                            <span class="text-xs font-mono bg-gray-100 px-2.5 py-1 rounded text-gray-500 mt-1 sm:mt-0">Jul 2025 — Jan 2026</span>
+                        </div>
+                        <ul class="list-disc list-outside ml-4 text-gray-600 text-sm space-y-2 leading-relaxed">
+                            <li>Managed a cross-functional team to develop and implement Standard Operating Procedures (SOPs) for social media publications, ensuring workflow efficiency and consistency.</li>
+                            <li>Co-organized and executed the inaugural launch event for the new board, successfully managing logistics and coordination to achieve the engagement of 150+ participants.</li>
+                        </ul>
+                    </div>
+
+                    <!-- BETIS Fasilkom UI -->
+                    <div class="relative pl-8 border-l-2 border-gray-200">
+                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-gray-400"></div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Person in Charge of Public Relations</h3>
+                                <p class="text-md font-medium text-gray-600">Bimbingan Belajar Gratis Fasilkom UI</p>
+                            </div>
+                            <span class="text-xs font-mono bg-gray-100 px-2.5 py-1 rounded text-gray-500 mt-1 sm:mt-0">Nov 2024 — Jun 2025</span>
+                        </div>
+                        <ul class="list-disc list-outside ml-4 text-gray-600 text-sm space-y-2 leading-relaxed">
+                            <li>Produced and launched 10+ content pieces with a cumulative reach of over 330k views, significantly boosting visibility and impact.[cite: 1]</li>
+                            <li>Successfully grew BETIS Fasilkom UI's Instagram followers by over 3,000, driving sustained audience engagement and community growth.[cite: 1]</li>
+                        </ul>
+                    </div>
+
+                    <!-- Open House Fasilkom UI -->
+                    <div class="relative pl-8 border-l-2 border-gray-200">
+                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-gray-400"></div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Expert Staff of Public Relations</h3>
+                                <p class="text-md font-medium text-gray-600">Open House Fasilkom UI</p>
+                            </div>
+                            <span class="text-xs font-mono bg-gray-100 px-2.5 py-1 rounded text-gray-500 mt-1 sm:mt-0">Jul 2024 — Nov 2024</span>
+                        </div>
+                        <ul class="list-disc list-outside ml-4 text-gray-600 text-sm space-y-2 leading-relaxed">
+                            <li>Coached 18 staff members to enhance their public speaking skills through training and feedback.</li>
+                            <li>Established partnerships with over 80 schools across Indonesia for "Fasilkom Goes to School".</li>
+                        </ul>
+                    </div>
+
+                    <!-- COMPFEST -->
+                    <div class="relative pl-8 border-l-2 border-gray-200">
+                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-gray-400"></div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Staff of Direct Marketing</h3>
+                                <p class="text-md font-medium text-gray-600">COMPFEST</p>
+                            </div>
+                            <span class="text-xs font-mono bg-gray-100 px-2.5 py-1 rounded text-gray-500 mt-1 sm:mt-0">Apr 2024 — Nov 2024</span>
+                        </div>
+                        <ul class="list-disc list-outside ml-4 text-gray-600 text-sm space-y-2 leading-relaxed">
+                            <li>Created marketing content that garnered over 200,000 total views across multiple platforms.</li>
+                            <li>Served as Master of Ceremony for key COMPFEST events, featuring renowned guests such as Adhitia Sofyan.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- 4. Contact Section (#contact) -->
+        <section id="contact" class="py-20 min-h-[60vh] flex flex-col justify-center">
+            <div class="max-w-2xl mx-auto text-center space-y-6">
+                <h2 class="text-4xl font-bold tracking-tight">Let's connect.</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    Whether you want to talk about project/product managements, software platforms, application design workflows, or marketing metrics—drop me a message or explore my repositories.
+                </p>
+                <div class="pt-4 flex flex-wrap justify-center items-center gap-4">
+                    <a href="mailto:aryagilang05@gmail.com" class="bg-black text-white font-medium px-6 py-3 rounded-md hover:bg-gray-800 transition tracking-wide text-sm w-full sm:w-auto">
+                        aryagilang05@gmail.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/arya-gilang-p/" target="_blank" class="border border-gray-300 bg-white text-gray-700 font-medium px-6 py-3 rounded-md hover:bg-gray-50 transition text-sm w-full sm:w-auto">
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/AryaGilangP" target="_blank" class="border border-gray-300 bg-white text-gray-700 font-medium px-6 py-3 rounded-md hover:bg-gray-50 transition text-sm w-full sm:w-auto">
+                        GitHub Profile
+                    </a>
+                    <a href="https://gitlab.cs.ui.ac.id/arya.gilang" target="_blank" class="border border-gray-300 bg-white text-gray-700 font-medium px-6 py-3 rounded-md hover:bg-gray-50 transition text-sm w-full sm:w-auto">
+                        CSUI GitLab
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 bg-white py-8 text-center text-xs font-mono text-gray-400">
+        &copy; 2026 Arya Gilang Prasetya. Built with Django & Tailwind CSS.
+    </footer>
+
+</body>
+</html>
