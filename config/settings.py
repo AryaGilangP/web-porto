@@ -125,5 +125,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'core', 'static'),
 ]
 
-# Ganti baris storage kemarin dengan versi ini agar Django toleran jika ada aset yang jalurnya melesat
+# Menggunakan WhiteNoise bawaan untuk penyajian file statis langsung tanpa menulis berkas manifest baru
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
