@@ -118,13 +118,11 @@ USE_TZ = True
 
 # config/settings.py (Bagian paling bawah)
 
-STATIC_URL = '/static/'
+# config/settings.py (Bagian paling bawah)
 
-# Menggunakan .parent agar folder 'static_deployed' terbuat tepat di root folder luar /porto
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_deployed')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'core', 'static'),
 ]
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
