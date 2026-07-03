@@ -1,20 +1,19 @@
 {
   "version": 2,
   "framework": null,
-  "builds": [
+  "cleanUrls": true,
+  "rewrites": [
     {
-      "src": "config/asgi.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "static_deployed/$1"
+      "source": "/static/core/(.*)",
+      "destination": "/static_deployed/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "config/asgi.py"
+      "source": "/static/(.*)",
+      "destination": "/static_deployed/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "config/asgi.py"
     }
   ]
 }
