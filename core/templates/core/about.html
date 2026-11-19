@@ -48,10 +48,12 @@
                 </p>
 
                 <div class="pt-2">
-                    <!-- Downloadable PDF Link matching image_bb24da.png -->
-                    <a href="{% static 'core/Arya Gilang Prasetya_CV.pdf' %}" download class="font-mono text-sm font-bold text-black border-b-2 border-black pb-1 hover:text-gray-500 hover:border-gray-500 transition-all inline-flex items-center space-x-1">
-                        <span>resume.pdf</span>
-                        <span>&darr;</span>
+                    {% load static %}
+
+                    <a href="{% static 'core/arya_gilang_cv.pdf' %}" 
+                    download="Arya_Gilang_Prasetya_CV.pdf"
+                    target="_blank">
+                        Download CV
                     </a>
                 </div>
             </div>
