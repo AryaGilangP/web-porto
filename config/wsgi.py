@@ -15,9 +15,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 
 application = get_wsgi_application()
 
-# PENTING: Suntikkan override host secara langsung ke setelan runtime Django
 from django.conf import settings
 settings.ALLOWED_HOSTS = ['*']
 
-# Handler untuk Vercel
+# Wajib bernama 'app' agar dikenali oleh runtime Python Vercel
 app = application
