@@ -5,66 +5,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ project.title }} | Arya Gilang Prasetya</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23000000'/><text x='50' y='67' font-family='Arial, sans-serif' font-size='48' font-weight='bold' fill='%23ffffff' text-anchor='middle'>AG</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-[#f9f9f9] text-[#111111] font-sans antialiased">
 
     <!-- Simple Detail Nav Bar -->
-    <nav class="bg-[#f9f9f9]/90 backdrop-blur-md border-b border-gray-200 px-8 py-4 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="flex items-center space-x-3">
-            <a href="{% url 'index' %}" class="bg-black text-white font-bold p-2 text-sm uppercase tracking-wider rounded">AG</a>
-            <span class="font-bold text-lg">Arya Gilang Prasetya</span>
+    <nav class="sticky top-0 z-50 bg-[#f9f9f9]/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3 sm:py-4 flex justify-between items-center gap-3">
+            <a href="{% url 'index' %}" class="flex items-center space-x-2.5 sm:space-x-3 shrink-0">
+                <span class="bg-black text-white font-bold p-2 text-xs sm:text-sm uppercase tracking-wider rounded shrink-0">AG</span>
+                <span class="font-bold text-base sm:text-lg truncate">Arya Gilang Prasetya</span>
+            </a>
+            <a href="{% url 'index' %}#projects" class="text-xs sm:text-sm font-medium text-gray-500 hover:text-black transition shrink-0">&larr; Back to Home</a>
         </div>
-        <a href="{% url 'index' %}" class="text-sm font-medium text-gray-500 hover:text-black transition">&larr; Back to Home</a>
     </nav>
 
     <!-- Main Detail Layout -->
-    <main class="max-w-7xl mx-auto px-8 py-12">
-        <div class="flex flex-col md:flex-row justify-between gap-12">
+    <main class="max-w-7xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
+        <div class="flex flex-col md:flex-row justify-between gap-8 sm:gap-12">
             
             <!-- Left Panel: Content Visual & Description -->
-            <div class="w-full md:w-3/5 space-y-8">
+            <div class="w-full md:w-3/5 space-y-6 sm:space-y-8">
                 <div>
                     <span class="text-xs font-mono text-gray-400 uppercase tracking-wider">{{ project.subtitle }}</span>
-                    <h1 class="text-5xl font-bold tracking-tight text-gray-900 mt-2">{{ project.title }}</h1>
+                    <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 mt-1.5 sm:mt-2 leading-tight">{{ project.title }}</h1>
                 </div>
 
-                <!-- Preview Placeholder Box matching image_5813bd.jpg -->
+                <!-- Preview Box -->
                 <div class="w-full overflow-hidden rounded-xl border border-gray-200 shadow-sm bg-white">
                     {% if project.image %}
                         <img src="{% static project.image %}" alt="{{ project.title }}" class="w-full h-auto object-cover">
                     {% else %}
-                        <div class="w-full h-96 bg-gray-200 flex items-center justify-center text-gray-400 font-mono text-sm">
+                        <div class="w-full h-56 sm:h-96 bg-gray-200 flex items-center justify-center text-gray-400 font-mono text-xs sm:text-sm">
                             No preview image available
                         </div>
                     {% endif %}
                 </div>
 
-                <p class="text-lg text-gray-700 leading-relaxed">
+                <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
                     {{ project.description }}
                 </p>
             </div>
 
             <!-- Right Panel: Metadata Statistics Sidebar -->
-            <div class="w-full md:w-2/5 max-w-sm space-y-8 pt-4">
+            <div class="w-full md:w-2/5 md:max-w-sm space-y-6 sm:space-y-8 md:pt-4">
                 
-                <!-- Tombol Live Demo hanya muncul jika status bernilai active (case-insensitive check) -->
-                <div class="flex justify-end h-10">
-                    {% if project.status|lower == 'active' %}
-                        <a href="{{ project.live_demo }}" target="_blank" class="border border-gray-300 rounded-md px-4 py-2 bg-white text-sm font-medium hover:bg-black hover:text-white transition-all shadow-sm">
-                            Live demo
-                        </a>
-                    {% endif %}
+                <!-- Tombol Live Demo: Full width di HP, rata kanan di Desktop -->
+                {% if project.status|lower == 'active' %}
+                <div class="flex justify-start md:justify-end">
+                    <a href="{{ project.live_demo }}" target="_blank" class="w-full md:w-auto text-center border border-gray-300 rounded-md px-5 py-2.5 bg-white text-sm font-medium hover:bg-black hover:text-white transition-all shadow-sm">
+                        Live demo &nearr;
+                    </a>
                 </div>
+                {% endif %}
 
-                <div class="divide-y divide-gray-200 font-mono text-sm border-t border-b border-gray-200">
-                    <div class="flex justify-between py-3"><span class="text-gray-400">role</span><span class="text-right text-gray-900 font-medium">{{ project.role }}</span></div>
-                    <div class="flex justify-between py-3"><span class="text-gray-400">year</span><span class="text-right text-gray-900">{{ project.year }}</span></div>
-                    <div class="flex justify-between py-3"><span class="text-gray-400">type</span><span class="text-right text-gray-900">{{ project.type }}</span></div>
+                <div class="divide-y divide-gray-200 font-mono text-xs sm:text-sm border-t border-b border-gray-200">
+                    <div class="flex justify-between py-3 gap-4"><span class="text-gray-400 shrink-0">role</span><span class="text-right text-gray-900 font-medium">{{ project.role }}</span></div>
+                    <div class="flex justify-between py-3 gap-4"><span class="text-gray-400 shrink-0">year</span><span class="text-right text-gray-900">{{ project.year }}</span></div>
+                    <div class="flex justify-between py-3 gap-4"><span class="text-gray-400 shrink-0">type</span><span class="text-right text-gray-900">{{ project.type }}</span></div>
                     
-                    <!-- Pewarnaan status menggunakan conditional template tag -->
-                    <div class="flex justify-between py-3">
-                        <span class="text-gray-400">status</span>
+                    <div class="flex justify-between py-3 gap-4">
+                        <span class="text-gray-400 shrink-0">status</span>
                         <span class="text-right font-bold {% if project.status|lower == 'active' %}text-green-600{% else %}text-red-600{% endif %}">
                             ● {{ project.status }}
                         </span>

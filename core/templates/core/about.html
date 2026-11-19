@@ -5,52 +5,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | Arya Gilang Prasetya</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23000000'/><text x='50' y='67' font-family='Arial, sans-serif' font-size='48' font-weight='bold' fill='%23ffffff' text-anchor='middle'>AG</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-[#f9f9f9] text-[#111111] font-sans antialiased">
 
-    <!-- Sticky Navbar -->
-    <nav class="sticky top-0 z-50 bg-[#f9f9f9]/90 backdrop-blur-md border-b border-gray-200 px-8 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-3">
-            <a href="{% url 'index' %}" class="bg-black text-white font-bold p-2 text-sm uppercase tracking-wider rounded">AG</a>
-            <div>
-                <span class="font-bold block text-lg">Arya Gilang Prasetya</span>
-                <span class="text-xs text-gray-500 border border-gray-300 rounded px-1.5 py-0.5 bg-white">Information Systems Student</span>
+    <!-- Sticky Responsive Navbar -->
+    <nav class="sticky top-0 z-50 bg-[#f9f9f9]/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3 sm:py-4 flex justify-between items-center">
+            <!-- Brand / Logo -->
+            <a href="{% url 'index' %}" class="flex items-center space-x-3 shrink-0">
+                <div class="bg-black text-white font-bold p-2 text-sm uppercase tracking-wider rounded shrink-0">AG</div>
+                <div>
+                    <span class="font-bold block text-base sm:text-lg leading-tight">Arya Gilang Prasetya</span>
+                    <span class="hidden sm:inline-block text-xs text-gray-500 border border-gray-300 rounded px-1.5 py-0.5 bg-white mt-0.5">Information Systems Student</span>
+                </div>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 font-medium text-gray-600 text-sm">
+                <a href="{% url 'index' %}#home" class="hover:text-black transition">Home</a>
+                <a href="{% url 'index' %}#projects" class="hover:text-black transition">Projects</a>
+                <a href="{% url 'about' %}" class="text-black font-semibold transition">About</a>
+                <a href="{% url 'index' %}#experience" class="hover:text-black transition">Experience</a>
+                <a href="{% url 'index' %}#contact" class="text-black border border-black rounded-md px-4 py-1.5 bg-white hover:bg-black hover:text-white transition-all">Get in touch</a>
             </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" type="button" class="md:hidden p-2 rounded-md text-gray-700 hover:text-black focus:outline-none" aria-label="Toggle Menu">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </div>
-        
-        <div class="flex items-center space-x-8 font-medium text-gray-600">
-            <a href="{% url 'index' %}#home" class="hover:text-black transition">Home</a>
-            <a href="{% url 'index' %}#projects" class="hover:text-black transition">Projects</a>
-            <a href="{% url 'about' %}" class="hover:text-black transition">About</a>
-            <a href="{% url 'index' %}#experience" class="hover:text-black transition">Experience</a>
-            <a href="{% url 'index' %}#contact" class="hover:text-black transition text-black border border-black rounded-md px-4 py-1.5 bg-white hover:bg-black hover:text-white transition-all">Get in touch</a>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white px-4 pt-3 pb-5 space-y-2 shadow-lg">
+            <a href="{% url 'index' %}#home" class="block py-2 text-base font-medium text-gray-700 hover:text-black">Home</a>
+            <a href="{% url 'index' %}#projects" class="block py-2 text-base font-medium text-gray-700 hover:text-black">Projects</a>
+            <a href="{% url 'about' %}" class="block py-2 text-base font-bold text-black">About</a>
+            <a href="{% url 'index' %}#experience" class="block py-2 text-base font-medium text-gray-700 hover:text-black">Experience</a>
+            <div class="pt-2">
+                <a href="{% url 'index' %}#contact" class="block w-full text-center bg-black text-white text-sm font-medium px-4 py-2.5 rounded-md">
+                    Get in touch
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- Main Content Split Layout -->
-    <main class="max-w-7xl mx-auto px-8 py-16">
-        <div class="flex flex-col md:flex-row justify-between items-start gap-16">
+    <main class="max-w-7xl mx-auto px-4 sm:px-8 py-10 sm:py-16">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-10 sm:gap-16">
             
             <!-- Left Side: Profile Intro & Resume Download -->
-            <div class="w-full md:w-5/12 space-y-8">
+            <div class="w-full md:w-5/12 space-y-6 sm:space-y-8">
                 <div class="space-y-4">
-                    <h1 class="text-6xl font-bold tracking-tight text-gray-900 leading-none">
+                    <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-gray-900 leading-none">
                         Arya Gilang<br>Prasetya
                     </h1>
-                    <div class="inline-block text-xs font-mono text-gray-400 border border-gray-200 rounded bg-white px-2.5 py-1">
+                    <div class="inline-block text-xs font-mono text-gray-500 border border-gray-200 rounded bg-white px-2.5 py-1.5 leading-relaxed">
                         information_systems · web_builder · product_manager · database · marketing
                     </div>
                 </div>
 
-                <p class="text-gray-600 text-lg leading-relaxed">
+                <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
                     Information Systems student at Universitas Indonesia. I focus on bridging software programming with platform structure design, transforming analytical blueprints into working digital modules. My academic track and organizational ventures span both system engineering and public marketing architectures.
                 </p>
 
-                <div class="pt-2">
-                    {% load static %}
-
-                    <a href="{% static 'core/arya_gilang_cv.pdf' %}" download="Arya_Gilang_Prasetya_CV.pdf" target="_blank">
+                <div class="pt-1 sm:pt-2">
+                    <a href="{% static 'core/arya_gilang_cv.pdf' %}" 
+                       download="Arya_Gilang_Prasetya_CV.pdf" 
+                       target="_blank"
+                       class="inline-flex items-center justify-center space-x-2 w-full sm:w-auto bg-black text-white font-mono text-sm px-5 py-3 rounded-md hover:bg-gray-800 transition shadow-sm">
                         <span>resume.pdf</span>
                         <span>&darr;</span>
                     </a>
@@ -58,36 +84,36 @@
             </div>
 
             <!-- Right Side: Portrait Image & Technical Grid Table -->
-            <div class="w-full md:w-7/12 space-y-10">
+            <div class="w-full md:w-7/12 space-y-8 sm:space-y-10">
                 <!-- Profile Image Frame -->
-                <div class="w-full h-64 bg-gray-200 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                <div class="w-full h-52 sm:h-64 bg-gray-200 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
                     <img src="{% static 'core/images/landscape_profile.jpeg' %}" alt="Arya Gilang Prasetya" class="w-full h-full object-cover">
                 </div>
 
-                <!-- Skills Table matching image_bb24da.png -->
+                <!-- Skills Table -->
                 <div class="divide-y divide-gray-200 border-t border-b border-gray-200 font-mono text-sm">
                     <!-- Coursework Row -->
-                    <div class="py-4 flex flex-col sm:flex-row items-start gap-4 sm:gap-12">
+                    <div class="py-4 flex flex-col sm:flex-row items-start gap-2 sm:gap-12">
                         <span class="text-gray-400 uppercase tracking-wider text-xs w-28 shrink-0 pt-0.5">Coursework</span>
-                        <span class="text-gray-800 leading-relaxed text-sm">Information Technology Project Management, IS Analysis and Design, Database, Platform Based Programming, Data Structure and Algorithm, Operation System, Artificial Intelligence and Data Science Foundations.</span>
+                        <span class="text-gray-800 leading-relaxed text-xs sm:text-sm">Information Technology Project Management, IS Analysis and Design, Database, Platform Based Programming, Data Structure and Algorithm, Operation System, Artificial Intelligence and Data Science Foundations.</span>
                     </div>
 
                     <!-- Programming Row -->
-                    <div class="py-4 flex flex-col sm:flex-row items-start gap-4 sm:gap-12">
+                    <div class="py-4 flex flex-col sm:flex-row items-start gap-2 sm:gap-12">
                         <span class="text-gray-400 uppercase tracking-wider text-xs w-28 shrink-0 pt-0.5">Programming</span>
-                        <span class="text-gray-800 leading-relaxed text-sm">HTML/CSS, Web Structure, Java, Python, SQL, Flutter, Django, Figma, Application Design & Wireframing, Tailwind, PostgreSQL, Spring Boot, TypeScript, Vue.js</span>
+                        <span class="text-gray-800 leading-relaxed text-xs sm:text-sm">HTML/CSS, Web Structure, Java, Python, SQL, Flutter, Django, Figma, Application Design & Wireframing, Tailwind, PostgreSQL, Spring Boot, TypeScript, Vue.js</span>
                     </div>
 
                     <!-- Software Row -->
-                    <div class="py-4 flex flex-col sm:flex-row items-start gap-4 sm:gap-12">
+                    <div class="py-4 flex flex-col sm:flex-row items-start gap-2 sm:gap-12">
                         <span class="text-gray-400 uppercase tracking-wider text-xs w-28 shrink-0 pt-0.5">Software</span>
-                        <span class="text-gray-800 leading-relaxed text-sm">Google Workspace, Microsoft Workspace, Docker, DBeaver, Figma</span>
+                        <span class="text-gray-800 leading-relaxed text-xs sm:text-sm">Google Workspace, Microsoft Workspace, Docker, DBeaver, Figma</span>
                     </div>
 
                     <!-- Language Row -->
-                    <div class="py-4 flex flex-col sm:flex-row items-start gap-4 sm:gap-12">
+                    <div class="py-4 flex flex-col sm:flex-row items-start gap-2 sm:gap-12">
                         <span class="text-gray-400 uppercase tracking-wider text-xs w-28 shrink-0 pt-0.5">Language</span>
-                        <span class="text-gray-800 leading-relaxed text-sm">Indonesian (native), English (advance)</span>
+                        <span class="text-gray-800 leading-relaxed text-xs sm:text-sm">Indonesian (native), English (advance)</span>
                     </div>
                 </div>
             </div>
@@ -96,9 +122,19 @@
     </main>
 
     <!-- Simple Footer -->
-    <footer class="border-t border-gray-200 bg-white py-8 text-center text-xs font-mono text-gray-400">
+    <footer class="border-t border-gray-200 bg-white py-8 px-4 text-center text-xs font-mono text-gray-400">
         &copy; 2026 Arya Gilang Prasetya. All rights reserved.
     </footer>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
 
 </body>
 </html>
