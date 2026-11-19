@@ -158,10 +158,146 @@
 
             <!-- Organizational Experience Subsection -->
             <div>
-                <div class="mb-8 sm:mb-12">
+                <div class="mb-8 sm:mb-10">
                     <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Organizational Experience</h2>
                     <p class="text-sm sm:text-base text-gray-500 mt-2">Public Relations and marketing positions held within Fasilkom UI.</p>
                 </div>
+
+                <!-- === START: Organizational Experience Auto Carousel (4:3, Floating on Hover, Non-clickable Images) === -->
+                <div id="org-carousel-wrapper" class="max-w-2xl mb-12">
+                    <div class="relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm hover:-translate-y-1.5 hover:shadow-md transition-all duration-300 cursor-default select-none">
+                        
+                        <!-- Track Foto (12 Foto 4:3 dari core/static/core/orga/) -->
+                        <div id="org-carousel-track" class="flex transition-transform duration-500 ease-out pointer-events-none">
+                            
+                            <!-- 1. BEM-BPH.JPG -->
+                            <div class="w-full shrink-0 relative">
+                                <img src="{% static 'core/orga/BEM-BPH.JPG' %}" alt="BEM Fasilkom UI BPH 2025" class="w-full aspect-[4/3] object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-5 text-white">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-gray-300">BEM Fasilkom UI · 2025</span>
+                                    <p class="text-sm sm:text-base font-medium mt-0.5">Badan Pengurus Harian — Biro Hubungan Masyarakat</p>
+                                </div>
+                            </div>
+
+                            <!-- 2. BEM-2025_GL.jpg -->
+                            <div class="w-full shrink-0 relative">
+                                <img src="{% static 'core/orga/BEM-2025_GL.jpg' %}" alt="BEM Fasilkom UI Grand Launching 2025" class="w-full aspect-[4/3] object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-5 text-white">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-gray-300">BEM Fasilkom UI · 2025</span>
+                                    <p class="text-sm sm:text-base font-medium mt-0.5">Grand Launching BEM Fasilkom UI</p>
+                                </div>
+                            </div>
+
+                            <!-- 3. BEM-25-x-ITB.JPG -->
+                            <div class="w-full shrink-0 relative">
+                                <img src="{% static 'core/orga/BEM-25-x-ITB.JPG' %}" alt="Studi Banding BEM Fasilkom UI x ITB" class="w-full aspect-[4/3] object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-5 text-white">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-gray-300">BEM Fasilkom UI · 2025</span>
+                                    <p class="text-sm sm:text-base font-medium mt-0.5">Comparative Study with Institut Teknologi Bandung</p>
+                                </div>
+                            </div>
+
+                            <!-- 4. BETIS-2025.jpg -->
+                            <div class="w-full shrink-0 relative">
+                                <img src="{% static 'core/orga/BETIS-2025.jpg' %}" alt="BETIS Fasilkom UI 2025" class="w-full aspect-[4/3] object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-5 text-white">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-gray-300">BETIS Fasilkom UI · 2025</span>
+                                    <p class="text-sm sm:text-base font-medium mt-0.5">Bimbingan Belajar Gratis Fasilkom UI</p>
+                                </div>
+                            </div>
+
+                            <!-- 5. BEM-2024.jpg -->
+                            <div class="w-full shrink-0 relative">
+                                <img src="{% static 'core/orga/BEM-2024.jpg' %}" alt="BEM Fasilkom UI 2024" class="w-full aspect-[4/3] object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-5 text-white">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-gray-300">BEM Fasilkom UI · 2024</span>
+                                    <p class="text-sm sm:text-base font-medium mt-0.5">Public Relations Bureau Team</p>
+                                </div>
+                            </div>
+
+                            <!-- 6. BEM-24-x-KPMG.jpg -->
+                            <div class="w-full shrink-0 relative">
+                                <img src="{% static 'core/orga/BEM-24-x-KPMG.jpg' %}" alt="Company Visit BEM Fasilkom UI x KPMG" class="w-full aspect-[4/3] object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-5 text-white">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-gray-300">BEM Fasilkom UI · 2024</span>
+                                    <p class="text-sm sm:text-base font-medium mt-0.5">Industry Visit to KPMG Indonesia</p>
+                                </div>
+                            </div>
+
+                            <!-- 7. BEM-24-x-UNPAD.jpg -->
+                            <div class="w-full shrink-0 relative">
+                                <img src="{% static 'core/orga/BEM-24-x-UNPAD.jpg' %}" alt="Studi Banding BEM Fasilkom UI x UNPAD" class="w-full aspect-[4/3] object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-5 text-white">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-gray-300">BEM Fasilkom UI · 2024</span>
+                                    <p class="text-sm sm:text-base font-medium mt-0.5">Comparative Study with Universitas Padjadjaran</p>
+                                </div>
+                            </div>
+
+                            <!-- 8. CF-2024.jpg -->
+                            <div class="w-full shrink-0 relative">
+                                <img src="{% static 'core/orga/CF-2024.jpg' %}" alt="COMPFEST 2024" class="w-full aspect-[4/3] object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-5 text-white">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-gray-300">COMPFEST · 2024</span>
+                                    <p class="text-sm sm:text-base font-medium mt-0.5">Direct Marketing & Main Event</p>
+                                </div>
+                            </div>
+
+                            <!-- 9. OH-2024.jpg -->
+                            <div class="w-full shrink-0 relative">
+                                <img src="{% static 'core/orga/OH-2024.jpg' %}" alt="Open House Fasilkom UI 2024" class="w-full aspect-[4/3] object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-5 text-white">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-gray-300">Open House Fasilkom UI · 2024</span>
+                                    <p class="text-sm sm:text-base font-medium mt-0.5">Expert Staff of Public Relations</p>
+                                </div>
+                            </div>
+
+                            <!-- 10. OH-2023.jpg -->
+                            <div class="w-full shrink-0 relative">
+                                <img src="{% static 'core/orga/OH-2023.jpg' %}" alt="Open House Fasilkom UI 2023" class="w-full aspect-[4/3] object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-5 text-white">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-gray-300">Open House Fasilkom UI · 2023</span>
+                                    <p class="text-sm sm:text-base font-medium mt-0.5">Public Relations Committee</p>
+                                </div>
+                            </div>
+
+                            <!-- 11. OH-2023 (1).jpg -->
+                            <div class="w-full shrink-0 relative">
+                                <img src="{% static 'core/orga/OH-2023 (1).jpg' %}" alt="Open House Fasilkom UI 2023 Session" class="w-full aspect-[4/3] object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-5 text-white">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-gray-300">Open House Fasilkom UI · 2023</span>
+                                    <p class="text-sm sm:text-base font-medium mt-0.5">Event & School Outreach Documentation</p>
+                                </div>
+                            </div>
+
+                            <!-- 12. OH-2023-x-Microsoft.jpg -->
+                            <div class="w-full shrink-0 relative">
+                                <img src="{% static 'core/orga/OH-2023-x-Microsoft.jpg' %}" alt="Open House Fasilkom UI x Microsoft" class="w-full aspect-[4/3] object-cover">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-5 text-white">
+                                    <span class="text-[11px] font-mono uppercase tracking-wider text-gray-300">Open House Fasilkom UI · 2023</span>
+                                    <p class="text-sm sm:text-base font-medium mt-0.5">Collaboration with Microsoft</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Tombol Prev (<) -->
+                        <button id="org-prev-btn" type="button" aria-label="Previous slide"
+                            class="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-black hover:text-white text-gray-900 w-9 h-9 sm:w-10 sm:h-10 rounded-full shadow-md flex items-center justify-center font-mono font-bold text-base transition focus:outline-none cursor-pointer">
+                            &lt;
+                        </button>
+
+                        <!-- Tombol Next (>) -->
+                        <button id="org-next-btn" type="button" aria-label="Next slide"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-black hover:text-white text-gray-900 w-9 h-9 sm:w-10 sm:h-10 rounded-full shadow-md flex items-center justify-center font-mono font-bold text-base transition focus:outline-none cursor-pointer">
+                            &gt;
+                        </button>
+
+                    </div>
+
+                    <!-- Indikator Dots di Bawah Foto -->
+                    <div id="org-carousel-dots" class="flex justify-center items-center flex-wrap gap-1.5 mt-4"></div>
+                </div>
+                <!-- === END: Organizational Experience Auto Carousel === -->
                 
                 <div class="space-y-10 sm:space-y-12 max-w-4xl">
                     <!-- BEM Fasilkom UI -->
@@ -266,21 +402,106 @@
         &copy; 2026 Arya Gilang Prasetya. Built with Django & Tailwind CSS.
     </footer>
 
-    <!-- Mobile Menu Toggle Script -->
+    <!-- Scripts: Mobile Menu & Autoplay Carousel -->
     <script>
+        // 1. Mobile Menu Toggle
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        mobileLinks.forEach(link => link.addEventListener('click', () => menu.classList.add('hidden')));
+
+        // 2. Organizational Autoplay Carousel
+        const wrapper = document.getElementById('org-carousel-wrapper');
+        const track = document.getElementById('org-carousel-track');
+        const slides = Array.from(track.children);
+        const nextBtn = document.getElementById('org-next-btn');
+        const prevBtn = document.getElementById('org-prev-btn');
+        const dotsContainer = document.getElementById('org-carousel-dots');
+
+        let currentIndex = 0;
+        let autoSlideTimer;
+        let startX = 0;
+
+        // Generate dots
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.ariaLabel = `Slide ${idx + 1}`;
+            dot.className = `h-2 rounded-full transition-all duration-300 cursor-pointer ${idx === 0 ? 'w-6 bg-black' : 'w-2 bg-gray-300 hover:bg-gray-400'}`;
+            dot.addEventListener('click', () => {
+                goToSlide(idx);
+                resetAutoSlide();
+            });
+            dotsContainer.appendChild(dot);
         });
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
+        const dots = Array.from(dotsContainer.children);
+
+        function goToSlide(index) {
+            if (index < 0) {
+                currentIndex = slides.length - 1;
+            } else if (index >= slides.length) {
+                currentIndex = 0;
+            } else {
+                currentIndex = index;
+            }
+
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            dots.forEach((dot, idx) => {
+                dot.className = `h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    idx === currentIndex ? 'w-6 bg-black' : 'w-2 bg-gray-300 hover:bg-gray-400'
+                }`;
             });
+        }
+
+        function startAutoSlide() {
+            autoSlideTimer = setInterval(() => {
+                goToSlide(currentIndex + 1);
+            }, 3500); // Berganti otomatis setiap 3.5 detik
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideTimer);
+        }
+
+        function resetAutoSlide() {
+            stopAutoSlide();
+            startAutoSlide();
+        }
+
+        nextBtn.addEventListener('click', () => {
+            goToSlide(currentIndex + 1);
+            resetAutoSlide();
         });
+
+        prevBtn.addEventListener('click', () => {
+            goToSlide(currentIndex - 1);
+            resetAutoSlide();
+        });
+
+        // Jeda autoplay saat di-hover (floating)
+        wrapper.addEventListener('mouseenter', stopAutoSlide);
+        wrapper.addEventListener('mouseleave', startAutoSlide);
+
+        // Dukungan geser (swipe) di layar sentuh HP
+        wrapper.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            stopAutoSlide();
+        }, { passive: true });
+
+        wrapper.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+            if (diff > 50) goToSlide(currentIndex + 1);
+            else if (diff < -50) goToSlide(currentIndex - 1);
+            startAutoSlide();
+        });
+
+        // Mulai putar otomatis saat halaman dibuka
+        startAutoSlide();
     </script>
 
 </body>
