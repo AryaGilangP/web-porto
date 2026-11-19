@@ -4,21 +4,9 @@
     {
       "src": "config/wsgi.py",
       "use": "@vercel/python"
-    },
-    {
-      "src": "static_deployed/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
-    {
-      "src": "/static/core/(.*)",
-      "dest": "/static_deployed/$1"
-    },
-    {
-      "src": "/static/(.*)",
-      "dest": "/static_deployed/$1"
-    },
     {
       "src": "/(.*)",
       "dest": "config/wsgi.py"
