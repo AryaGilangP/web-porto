@@ -7,17 +7,38 @@
     <title>{{ project.title }} | Arya Gilang Prasetya</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23000000'/><text x='50' y='67' font-family='Arial, sans-serif' font-size='48' font-weight='bold' fill='%23ffffff' text-anchor='middle'>AG</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 </head>
-<body class="bg-[#f9f9f9] text-[#111111] font-sans antialiased">
+<body class="bg-[#f9f9f9] dark:bg-[#0a0a0a] text-[#111111] dark:text-[#ededed] font-sans antialiased transition-colors duration-300">
 
     <!-- Simple Detail Nav Bar -->
-    <nav class="sticky top-0 z-50 bg-[#f9f9f9]/90 backdrop-blur-md border-b border-gray-200">
+    <nav class="sticky top-0 z-50 bg-[#f9f9f9]/90 dark:bg-[#0a0a0a]/90 backdrop-blur-md border-b border-gray-200 dark:border-neutral-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3 sm:py-4 flex justify-between items-center gap-3">
             <a href="{% url 'index' %}" class="flex items-center space-x-2.5 sm:space-x-3 shrink-0">
-                <span class="bg-black text-white font-bold p-2 text-xs sm:text-sm uppercase tracking-wider rounded shrink-0">AG</span>
+                <span class="bg-black dark:bg-white text-white dark:text-black font-bold p-2 text-xs sm:text-sm uppercase tracking-wider rounded shrink-0 transition-colors">AG</span>
                 <span class="font-bold text-base sm:text-lg truncate">Arya Gilang Prasetya</span>
             </a>
-            <a href="{% url 'index' %}#projects" class="text-xs sm:text-sm font-medium text-gray-500 hover:text-black transition shrink-0">&larr; Back to Home</a>
+
+            <div class="flex items-center space-x-3 sm:space-x-4 shrink-0">
+                <button type="button" class="theme-toggle p-2 rounded-md border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300 hover:border-black dark:hover:border-white transition" aria-label="Toggle Dark Mode">
+                    <svg class="hidden dark:block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg class="block dark:hidden w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+                <a href="{% url 'index' %}#projects" class="text-xs sm:text-sm font-medium text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition">&larr; Back to Home</a>
+            </div>
         </div>
     </nav>
 
@@ -28,22 +49,22 @@
             <!-- Left Panel: Content Visual & Description -->
             <div class="w-full md:w-3/5 space-y-6 sm:space-y-8">
                 <div>
-                    <span class="text-xs font-mono text-gray-400 uppercase tracking-wider">{{ project.subtitle }}</span>
-                    <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 mt-1.5 sm:mt-2 leading-tight">{{ project.title }}</h1>
+                    <span class="text-xs font-mono text-gray-400 dark:text-neutral-500 uppercase tracking-wider">{{ project.subtitle }}</span>
+                    <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mt-1.5 sm:mt-2 leading-tight">{{ project.title }}</h1>
                 </div>
 
                 <!-- Preview Box -->
-                <div class="w-full overflow-hidden rounded-xl border border-gray-200 shadow-sm bg-white">
+                <div class="w-full overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 shadow-sm bg-white dark:bg-neutral-900">
                     {% if project.image %}
                         <img src="{% static project.image %}" alt="{{ project.title }}" class="w-full h-auto object-cover">
                     {% else %}
-                        <div class="w-full h-56 sm:h-96 bg-gray-200 flex items-center justify-center text-gray-400 font-mono text-xs sm:text-sm">
+                        <div class="w-full h-56 sm:h-96 bg-gray-200 dark:bg-neutral-800 flex items-center justify-center text-gray-400 dark:text-neutral-500 font-mono text-xs sm:text-sm">
                             No preview image available
                         </div>
                     {% endif %}
                 </div>
 
-                <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                <p class="text-base sm:text-lg text-gray-700 dark:text-neutral-300 leading-relaxed">
                     {{ project.description }}
                 </p>
             </div>
@@ -51,23 +72,23 @@
             <!-- Right Panel: Metadata Statistics Sidebar -->
             <div class="w-full md:w-2/5 md:max-w-sm space-y-6 sm:space-y-8 md:pt-4">
                 
-                <!-- Tombol Live Demo: Full width di HP, rata kanan di Desktop -->
+                <!-- Live Demo Button -->
                 {% if project.status|lower == 'active' %}
                 <div class="flex justify-start md:justify-end">
-                    <a href="{{ project.live_demo }}" target="_blank" class="w-full md:w-auto text-center border border-gray-300 rounded-md px-5 py-2.5 bg-white text-sm font-medium hover:bg-black hover:text-white transition-all shadow-sm">
+                    <a href="{{ project.live_demo }}" target="_blank" class="w-full md:w-auto text-center border border-gray-300 dark:border-neutral-700 rounded-md px-5 py-2.5 bg-white dark:bg-neutral-900 text-sm font-medium hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all shadow-sm">
                         Live demo &nearr;
                     </a>
                 </div>
                 {% endif %}
 
-                <div class="divide-y divide-gray-200 font-mono text-xs sm:text-sm border-t border-b border-gray-200">
-                    <div class="flex justify-between py-3 gap-4"><span class="text-gray-400 shrink-0">role</span><span class="text-right text-gray-900 font-medium">{{ project.role }}</span></div>
-                    <div class="flex justify-between py-3 gap-4"><span class="text-gray-400 shrink-0">year</span><span class="text-right text-gray-900">{{ project.year }}</span></div>
-                    <div class="flex justify-between py-3 gap-4"><span class="text-gray-400 shrink-0">type</span><span class="text-right text-gray-900">{{ project.type }}</span></div>
+                <div class="divide-y divide-gray-200 dark:divide-neutral-800 font-mono text-xs sm:text-sm border-t border-b border-gray-200 dark:border-neutral-800">
+                    <div class="flex justify-between py-3 gap-4"><span class="text-gray-400 dark:text-neutral-500 shrink-0">role</span><span class="text-right text-gray-900 dark:text-white font-medium">{{ project.role }}</span></div>
+                    <div class="flex justify-between py-3 gap-4"><span class="text-gray-400 dark:text-neutral-500 shrink-0">year</span><span class="text-right text-gray-900 dark:text-white">{{ project.year }}</span></div>
+                    <div class="flex justify-between py-3 gap-4"><span class="text-gray-400 dark:text-neutral-500 shrink-0">type</span><span class="text-right text-gray-900 dark:text-white">{{ project.type }}</span></div>
                     
                     <div class="flex justify-between py-3 gap-4">
-                        <span class="text-gray-400 shrink-0">status</span>
-                        <span class="text-right font-bold {% if project.status|lower == 'active' %}text-green-600{% else %}text-red-600{% endif %}">
+                        <span class="text-gray-400 dark:text-neutral-500 shrink-0">status</span>
+                        <span class="text-right font-bold {% if project.status|lower == 'active' %}text-green-600 dark:text-green-400{% else %}text-red-600 dark:text-red-400{% endif %}">
                             ● {{ project.status }}
                         </span>
                     </div>
@@ -75,10 +96,10 @@
 
                 <!-- Tech Stack Tags Box -->
                 <div class="space-y-3">
-                    <h3 class="font-mono text-xs text-gray-400 uppercase tracking-wider">Stack</h3>
+                    <h3 class="font-mono text-xs text-gray-400 dark:text-neutral-500 uppercase tracking-wider">Stack</h3>
                     <div class="flex flex-wrap gap-2">
                         {% for tech in project.stack %}
-                        <span class="bg-white border border-gray-200 rounded px-2.5 py-1 text-xs font-mono text-gray-600 shadow-sm">{{ tech }}</span>
+                        <span class="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded px-2.5 py-1 text-xs font-mono text-gray-600 dark:text-neutral-300 shadow-sm">{{ tech }}</span>
                         {% endfor %}
                     </div>
                 </div>
@@ -86,6 +107,18 @@
 
         </div>
     </main>
+
+    <!-- Scripts -->
+    <script>
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        themeToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+        });
+    </script>
 
 </body>
 </html>

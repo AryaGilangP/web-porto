@@ -7,46 +7,78 @@
     <title>Arya Gilang Prasetya | Portfolio</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23000000'/><text x='50' y='67' font-family='Arial, sans-serif' font-size='48' font-weight='bold' fill='%23ffffff' text-anchor='middle'>AG</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 </head>
-<body class="bg-[#f9f9f9] text-[#111111] font-sans antialiased">
+<body class="bg-[#f9f9f9] dark:bg-[#0a0a0a] text-[#111111] dark:text-[#ededed] font-sans antialiased transition-colors duration-300">
 
     <!-- Sticky Responsive Navbar -->
-    <nav class="sticky top-0 z-50 bg-[#f9f9f9]/90 backdrop-blur-md border-b border-gray-200">
+    <nav class="sticky top-0 z-50 bg-[#f9f9f9]/90 dark:bg-[#0a0a0a]/90 backdrop-blur-md border-b border-gray-200 dark:border-neutral-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3 sm:py-4 flex justify-between items-center">
             <!-- Brand / Logo -->
             <a href="#home" class="flex items-center space-x-3 shrink-0">
-                <div class="bg-black text-white font-bold p-2 text-sm uppercase tracking-wider rounded shrink-0">AG</div>
+                <div class="bg-black dark:bg-white text-white dark:text-black font-bold p-2 text-sm uppercase tracking-wider rounded shrink-0 transition-colors">AG</div>
                 <div>
                     <span class="font-bold block text-base sm:text-lg leading-tight">Arya Gilang Prasetya</span>
-                    <span class="hidden sm:inline-block text-xs text-gray-500 border border-gray-300 rounded px-1.5 py-0.5 bg-white mt-0.5">Information Systems Student</span>
+                    <span class="hidden sm:inline-block text-xs text-gray-500 dark:text-neutral-400 border border-gray-300 dark:border-neutral-700 rounded px-1.5 py-0.5 bg-white dark:bg-neutral-900 mt-0.5">Information Systems Student</span>
                 </div>
             </a>
             
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-8 font-medium text-gray-600 text-sm">
-                <a href="#home" class="hover:text-black transition">Home</a>
-                <a href="#projects" class="hover:text-black transition">Projects</a>
-                <a href="{% url 'about' %}" class="hover:text-black transition">About</a>
-                <a href="#experience" class="hover:text-black transition">Experience</a>
-                <a href="#contact" class="text-black border border-black rounded-md px-4 py-1.5 bg-white hover:bg-black hover:text-white transition-all">Get in touch</a>
+            <div class="hidden md:flex items-center space-x-7 font-medium text-gray-600 dark:text-neutral-400 text-sm">
+                <a href="#home" class="hover:text-black dark:hover:text-white transition">Home</a>
+                <a href="#projects" class="hover:text-black dark:hover:text-white transition">Projects</a>
+                <a href="{% url 'about' %}" class="hover:text-black dark:hover:text-white transition">About</a>
+                <a href="#experience" class="hover:text-black dark:hover:text-white transition">Experience</a>
+                
+                <!-- Theme Toggle Button (Desktop) -->
+                <button type="button" class="theme-toggle p-2 rounded-md border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300 hover:border-black dark:hover:border-white transition" aria-label="Toggle Dark Mode">
+                    <svg class="hidden dark:block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg class="block dark:hidden w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+
+                <a href="#contact" class="text-black dark:text-white border border-black dark:border-neutral-600 rounded-md px-4 py-1.5 bg-white dark:bg-neutral-900 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">Get in touch</a>
             </div>
 
-            <!-- Mobile Hamburger Button -->
-            <button id="mobile-menu-btn" type="button" class="md:hidden p-2 rounded-md text-gray-700 hover:text-black focus:outline-none" aria-label="Toggle Menu">
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
+            <!-- Mobile Controls (Theme Toggle + Hamburger) -->
+            <div class="flex items-center space-x-2 md:hidden">
+                <button type="button" class="theme-toggle p-2 rounded-md border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300" aria-label="Toggle Dark Mode">
+                    <svg class="hidden dark:block w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg class="block dark:hidden w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+
+                <button id="mobile-menu-btn" type="button" class="p-2 rounded-md text-gray-700 dark:text-neutral-300 hover:text-black dark:hover:text-white focus:outline-none" aria-label="Toggle Menu">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
         </div>
 
         <!-- Mobile Dropdown Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white px-4 pt-3 pb-5 space-y-2 shadow-lg">
-            <a href="#home" class="mobile-link block py-2 text-base font-medium text-gray-700 hover:text-black">Home</a>
-            <a href="#projects" class="mobile-link block py-2 text-base font-medium text-gray-700 hover:text-black">Projects</a>
-            <a href="{% url 'about' %}" class="mobile-link block py-2 text-base font-medium text-gray-700 hover:text-black">About</a>
-            <a href="#experience" class="mobile-link block py-2 text-base font-medium text-gray-700 hover:text-black">Experience</a>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-4 pt-3 pb-5 space-y-2 shadow-lg">
+            <a href="#home" class="mobile-link block py-2 text-base font-medium text-gray-700 dark:text-neutral-300 hover:text-black dark:hover:text-white">Home</a>
+            <a href="#projects" class="mobile-link block py-2 text-base font-medium text-gray-700 dark:text-neutral-300 hover:text-black dark:hover:text-white">Projects</a>
+            <a href="{% url 'about' %}" class="mobile-link block py-2 text-base font-medium text-gray-700 dark:text-neutral-300 hover:text-black dark:hover:text-white">About</a>
+            <a href="#experience" class="mobile-link block py-2 text-base font-medium text-gray-700 dark:text-neutral-300 hover:text-black dark:hover:text-white">Experience</a>
             <div class="pt-2">
-                <a href="#contact" class="mobile-link block w-full text-center bg-black text-white text-sm font-medium px-4 py-2.5 rounded-md">
+                <a href="#contact" class="mobile-link block w-full text-center bg-black dark:bg-white text-white dark:text-black text-sm font-medium px-4 py-2.5 rounded-md">
                     Get in touch
                 </a>
             </div>
@@ -57,69 +89,69 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-8">
 
         <!-- 1. Hero Section (#home) -->
-        <section id="home" class="min-h-[calc(100vh-72px)] flex flex-col md:flex-row items-center justify-between py-10 sm:py-12 gap-10 sm:gap-12 border-b border-gray-200">
+        <section id="home" class="min-h-[calc(100vh-72px)] flex flex-col md:flex-row items-center justify-between py-10 sm:py-12 gap-10 sm:gap-12 border-b border-gray-200 dark:border-neutral-800">
             <!-- Left Side Info -->
             <div class="w-full md:w-3/5 space-y-5 sm:space-y-6">
-                <div class="flex items-center space-x-2 text-xs font-mono text-green-600 uppercase tracking-wider">
+                <div class="flex items-center space-x-2 text-xs font-mono text-green-600 dark:text-green-400 uppercase tracking-wider">
                     <span class="h-2 w-2 rounded-full bg-green-500 inline-block animate-pulse"></span>
                     <span>open_to_work · Jakarta, ID · 2026</span>
                 </div>
                 
-                <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-none text-gray-900">
-                    Arya Gilang<br><span class="text-gray-800">Prasetya</span>
+                <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-none text-gray-900 dark:text-white">
+                    Arya Gilang<br><span class="text-gray-800 dark:text-neutral-200">Prasetya</span>
                 </h1>
                 
-                <p class="text-xs sm:text-sm font-mono text-gray-400 tracking-wide leading-relaxed">
+                <p class="text-xs sm:text-sm font-mono text-gray-400 dark:text-neutral-500 tracking-wide leading-relaxed">
                     information_systems · web_builder · ui_designer · product_manager · database · marketing
                 </p>
                 
-                <p class="text-base sm:text-xl text-gray-600 max-w-xl leading-relaxed">
+                <p class="text-base sm:text-xl text-gray-600 dark:text-neutral-400 max-w-xl leading-relaxed">
                     I build web applications and digital management systems. Currently studying Information Systems at Universitas Indonesia, bridging software architecture with strategic product solutions.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 sm:pt-4">
-                    <a href="#projects" class="text-center bg-black text-white font-medium px-6 py-3 rounded-md hover:bg-gray-800 transition shadow-sm text-sm sm:text-base">View projects</a>
-                    <a href="#contact" class="text-center border border-gray-300 bg-white text-gray-700 font-medium px-6 py-3 rounded-md hover:bg-gray-50 transition text-sm sm:text-base">Contact info</a>
+                    <a href="#projects" class="text-center bg-black dark:bg-white text-white dark:text-black font-medium px-6 py-3 rounded-md hover:bg-gray-800 dark:hover:bg-neutral-200 transition shadow-sm text-sm sm:text-base">View projects</a>
+                    <a href="#contact" class="text-center border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300 font-medium px-6 py-3 rounded-md hover:bg-gray-50 dark:hover:bg-neutral-800 transition text-sm sm:text-base">Contact info</a>
                 </div>
             </div>
 
             <!-- Right Side Highlight Card -->
-            <div class="w-full md:w-2/5 max-w-sm mx-auto md:mx-0 bg-white rounded-xl border border-gray-200 p-4 shadow-sm space-y-4">
-                <div class="w-full h-72 sm:h-80 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400 relative overflow-hidden">
+            <div class="w-full md:w-2/5 max-w-sm mx-auto md:mx-0 bg-white dark:bg-neutral-900 rounded-xl border border-gray-200 dark:border-neutral-800 p-4 shadow-sm space-y-4">
+                <div class="w-full h-72 sm:h-80 bg-gray-200 dark:bg-neutral-800 rounded-lg flex items-center justify-center text-gray-400 relative overflow-hidden">
                     <img src="{% static 'core/images/profile_picture.jpeg' %}" alt="Arya Gilang Prasetya" class="w-full h-full object-cover">
                 </div>
-                <div class="divide-y divide-gray-100 font-mono text-xs sm:text-sm">
-                    <div class="flex justify-between py-2"><span class="text-gray-400">location</span><span class="text-right">Kota Depok / Jakarta</span></div>
-                    <div class="flex justify-between py-2"><span class="text-gray-400">education</span><span class="text-right">Universitas Indonesia</span></div>
-                    <div class="flex justify-between py-2"><span class="text-gray-400">status</span><span class="text-green-600 font-bold">● SINGLE</span></div>
-                    <div class="flex justify-between py-2"><span class="text-gray-400">github</span><span class="text-right"><a href="https://github.com/AryaGilangP" target="_blank" class="underline hover:text-gray-600">AryaGilangP</a></span></div>
-                    <div class="flex justify-between py-2"><span class="text-gray-400">gitlab</span><span class="text-right"><a href="https://gitlab.cs.ui.ac.id/arya.gilang" target="_blank" class="underline hover:text-gray-600">arya.gilang</a></span></div>
+                <div class="divide-y divide-gray-100 dark:divide-neutral-800 font-mono text-xs sm:text-sm">
+                    <div class="flex justify-between py-2"><span class="text-gray-400 dark:text-neutral-500">location</span><span class="text-right">Kota Depok / Jakarta</span></div>
+                    <div class="flex justify-between py-2"><span class="text-gray-400 dark:text-neutral-500">education</span><span class="text-right">Universitas Indonesia</span></div>
+                    <div class="flex justify-between py-2"><span class="text-gray-400 dark:text-neutral-500">status</span><span class="text-green-600 dark:text-green-400 font-bold">● SINGLE</span></div>
+                    <div class="flex justify-between py-2"><span class="text-gray-400 dark:text-neutral-500">github</span><span class="text-right"><a href="https://github.com/AryaGilangP" target="_blank" class="underline hover:text-gray-600 dark:hover:text-neutral-300">AryaGilangP</a></span></div>
+                    <div class="flex justify-between py-2"><span class="text-gray-400 dark:text-neutral-500">gitlab</span><span class="text-right"><a href="https://gitlab.cs.ui.ac.id/arya.gilang" target="_blank" class="underline hover:text-gray-600 dark:hover:text-neutral-300">arya.gilang</a></span></div>
                 </div>
             </div>
         </section>
 
         <!-- 2. Projects Section (#projects) -->
-        <section id="projects" class="py-16 sm:py-20 border-b border-gray-200">
+        <section id="projects" class="py-16 sm:py-20 border-b border-gray-200 dark:border-neutral-800">
             <div class="mb-10 sm:mb-12">
                 <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Academic & Group Projects</h2>
-                <p class="text-sm sm:text-base text-gray-500 mt-2">A collection of web platforms and interactive systems engineered collectively.</p>
+                <p class="text-sm sm:text-base text-gray-500 dark:text-neutral-400 mt-2">A collection of web platforms and interactive systems engineered collectively.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 {% for slug, data in projects.items %}
-                <div class="bg-white border border-gray-200 rounded-xl p-5 sm:p-6 flex flex-col justify-between hover:shadow-md transition">
+                <div class="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-xl p-5 sm:p-6 flex flex-col justify-between hover:shadow-md dark:hover:border-neutral-700 transition">
                     <div>
-                        <span class="text-xs font-mono text-gray-400 block mb-2">{{ data.subtitle }}</span>
+                        <span class="text-xs font-mono text-gray-400 dark:text-neutral-500 block mb-2">{{ data.subtitle }}</span>
                         <h3 class="text-lg sm:text-xl font-bold mb-2">{{ data.title }}</h3>
-                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">{{ data.description }}</p>
+                        <p class="text-gray-600 dark:text-neutral-400 mb-4 text-sm leading-relaxed">{{ data.description }}</p>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-gray-100 flex flex-wrap justify-between items-center gap-3">
-                        <div class="flex flex-wrap gap-1.5 font-mono text-xs text-gray-500">
+                    <div class="mt-4 pt-3 border-t border-gray-100 dark:border-neutral-800 flex flex-wrap justify-between items-center gap-3">
+                        <div class="flex flex-wrap gap-1.5 font-mono text-xs text-gray-500 dark:text-neutral-400">
                             {% for tech in data.stack|slice:":3" %}
-                            <span class="bg-gray-100 px-2 py-1 rounded">{{ tech }}</span>
+                            <span class="bg-gray-100 dark:bg-neutral-800 px-2 py-1 rounded">{{ tech }}</span>
                             {% endfor %}
                         </div>
-                        <a href="{% url 'project_detail' project_slug=slug %}" class="text-sm font-bold text-black underline hover:text-gray-600 shrink-0">View Details</a>
+                        <a href="{% url 'project_detail' project_slug=slug %}" class="text-sm font-bold text-black dark:text-white underline hover:text-gray-600 dark:hover:text-neutral-300 shrink-0">View Details</a>
                     </div>
                 </div>
                 {% endfor %}
@@ -127,27 +159,27 @@
         </section>
 
         <!-- 3. Experience Section (#experience) -->
-        <section id="experience" class="py-16 sm:py-20 border-b border-gray-200 space-y-14 sm:space-y-16">
+        <section id="experience" class="py-16 sm:py-20 border-b border-gray-200 dark:border-neutral-800 space-y-14 sm:space-y-16">
             
             <!-- Work Experience Subsection -->
             <div>
                 <div class="mb-8 sm:mb-12">
                     <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Work Experience</h2>
-                    <p class="text-sm sm:text-base text-gray-500 mt-2">Professional roles.</p>
+                    <p class="text-sm sm:text-base text-gray-500 dark:text-neutral-400 mt-2">Professional roles.</p>
                 </div>
                 
                 <div class="space-y-10 sm:space-y-12 max-w-4xl">
                     <!-- Katalis AI -->
-                    <div class="relative pl-6 sm:pl-8 border-l-2 border-black">
-                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-black"></div>
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-black dark:border-white">
+                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-black dark:bg-white"></div>
                         <div class="flex flex-col sm:flex-row sm:justify-between items-start mb-3 gap-1.5">
                             <div>
-                                <h3 class="text-lg sm:text-xl font-bold text-gray-900">Product Intern</h3>
-                                <p class="text-sm sm:text-md font-medium text-gray-600">Katalis AI</p>
+                                <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">Product Intern</h3>
+                                <p class="text-sm sm:text-md font-medium text-gray-600 dark:text-neutral-400">Katalis AI</p>
                             </div>
-                            <span class="text-xs font-mono bg-gray-100 px-2.5 py-1 rounded text-gray-500">Jul 2026 — Sep 2026</span>
+                            <span class="text-xs font-mono bg-gray-100 dark:bg-neutral-800 px-2.5 py-1 rounded text-gray-500 dark:text-neutral-400">Jul 2026 — Sep 2026</span>
                         </div>
-                        <ul class="list-disc list-outside ml-4 text-gray-600 text-sm space-y-2 leading-relaxed">
+                        <ul class="list-disc list-outside ml-4 text-gray-600 dark:text-neutral-400 text-sm space-y-2 leading-relaxed">
                             <li>Write and maintain product documentation: PRDs, user stories, release notes, and internal SOPs.</li>
                             <li>Conduct research tasks including competitor analysis, feature benchmarking, and UX references.</li>
                             <li>Work across teams product, engineering, marketing, and operations to understand their current flow.</li>
@@ -160,7 +192,7 @@
             <div>
                 <div class="mb-6 sm:mb-8">
                     <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Organizational Experience</h2>
-                    <p class="text-sm sm:text-base text-gray-500 mt-2">Public Relations and marketing positions held within Fasilkom UI.</p>
+                    <p class="text-sm sm:text-base text-gray-500 dark:text-neutral-400 mt-2">Public Relations and marketing positions held within Fasilkom UI.</p>
                 </div>
 
                 <!-- === START: Center-Mode Multi-Slide Organizational Carousel === -->
@@ -168,12 +200,12 @@
                     
                     <!-- Viewport Carousel -->
                     <div class="overflow-hidden py-5 px-2">
-                        <!-- Track Foto (12 Foto 4:3 dari core/static/core/orga/) -->
+                        <!-- Track Foto -->
                         <div id="org-carousel-track" class="flex items-center transition-transform duration-700 ease-out pointer-events-none">
                             
                             <!-- 1. BEM-BPH.JPG -->
                             <div class="org-slide w-48 sm:w-56 md:w-64 shrink-0 px-2 transition-all duration-700">
-                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-700">
+                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-700">
                                     <img src="{% static 'core/orga/BEM-BPH.JPG' %}" alt="BEM Fasilkom UI BPH 2025" class="w-full aspect-[4/3] object-cover">
                                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 text-white">
                                         <span class="text-[10px] font-mono uppercase tracking-wider text-gray-300 block">BEM Fasilkom UI · 2025</span>
@@ -184,7 +216,7 @@
 
                             <!-- 2. BEM-2025_GL.jpg -->
                             <div class="org-slide w-48 sm:w-56 md:w-64 shrink-0 px-2 transition-all duration-700">
-                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-700">
+                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-700">
                                     <img src="{% static 'core/orga/BEM-2025_GL.jpg' %}" alt="BEM Fasilkom UI Grand Launching 2025" class="w-full aspect-[4/3] object-cover">
                                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 text-white">
                                         <span class="text-[10px] font-mono uppercase tracking-wider text-gray-300 block">BEM Fasilkom UI · 2025</span>
@@ -195,7 +227,7 @@
 
                             <!-- 3. BEM-25-x-ITB.JPG -->
                             <div class="org-slide w-48 sm:w-56 md:w-64 shrink-0 px-2 transition-all duration-700">
-                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-700">
+                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-700">
                                     <img src="{% static 'core/orga/BEM-25-x-ITB.JPG' %}" alt="Studi Banding BEM Fasilkom UI x ITB" class="w-full aspect-[4/3] object-cover">
                                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 text-white">
                                         <span class="text-[10px] font-mono uppercase tracking-wider text-gray-300 block">BEM Fasilkom UI · 2025</span>
@@ -204,9 +236,9 @@
                                 </div>
                             </div>
 
-                            <!-- 7. BEM-25-x-UNPAD.jpg -->
+                            <!-- 4. BEM-24-x-UNPAD.jpg -->
                             <div class="org-slide w-48 sm:w-56 md:w-64 shrink-0 px-2 transition-all duration-700">
-                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-700">
+                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-700">
                                     <img src="{% static 'core/orga/BEM-24-x-UNPAD.jpg' %}" alt="Studi Banding BEM Fasilkom UI x UNPAD" class="w-full aspect-[4/3] object-cover">
                                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 text-white">
                                         <span class="text-[10px] font-mono uppercase tracking-wider text-gray-300 block">BEM Fasilkom UI · 2025</span>
@@ -215,9 +247,9 @@
                                 </div>
                             </div>
 
-                            <!-- 4. BETIS-2025.jpg -->
+                            <!-- 5. BETIS-2025.jpg -->
                             <div class="org-slide w-48 sm:w-56 md:w-64 shrink-0 px-2 transition-all duration-700">
-                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-700">
+                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-700">
                                     <img src="{% static 'core/orga/BETIS-2025.jpg' %}" alt="BETIS Fasilkom UI 2025" class="w-full aspect-[4/3] object-cover">
                                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 text-white">
                                         <span class="text-[10px] font-mono uppercase tracking-wider text-gray-300 block">BETIS Fasilkom UI · 2025</span>
@@ -226,9 +258,9 @@
                                 </div>
                             </div>
 
-                            <!-- 5. BEM-2024.jpg -->
+                            <!-- 6. BEM-2024.jpg -->
                             <div class="org-slide w-48 sm:w-56 md:w-64 shrink-0 px-2 transition-all duration-700">
-                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-700">
+                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-700">
                                     <img src="{% static 'core/orga/BEM-2024.jpg' %}" alt="BEM Fasilkom UI 2024" class="w-full aspect-[4/3] object-cover">
                                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 text-white">
                                         <span class="text-[10px] font-mono uppercase tracking-wider text-gray-300 block">BEM Fasilkom UI · 2024</span>
@@ -237,9 +269,9 @@
                                 </div>
                             </div>
 
-                            <!-- 6. BEM-24-x-KPMG.jpg -->
+                            <!-- 7. BEM-24-x-KPMG.jpg -->
                             <div class="org-slide w-48 sm:w-56 md:w-64 shrink-0 px-2 transition-all duration-700">
-                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-700">
+                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-700">
                                     <img src="{% static 'core/orga/BEM-24-x-KPMG.jpg' %}" alt="Company Visit BEM Fasilkom UI x KPMG" class="w-full aspect-[4/3] object-cover">
                                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 text-white">
                                         <span class="text-[10px] font-mono uppercase tracking-wider text-gray-300 block">BEM Fasilkom UI · 2024</span>
@@ -250,7 +282,7 @@
 
                             <!-- 8. CF-2024.jpg -->
                             <div class="org-slide w-48 sm:w-56 md:w-64 shrink-0 px-2 transition-all duration-700">
-                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-700">
+                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-700">
                                     <img src="{% static 'core/orga/CF-2024.jpg' %}" alt="COMPFEST 2024" class="w-full aspect-[4/3] object-cover">
                                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 text-white">
                                         <span class="text-[10px] font-mono uppercase tracking-wider text-gray-300 block">COMPFEST · 2024</span>
@@ -261,7 +293,7 @@
 
                             <!-- 9. OH-2024.jpg -->
                             <div class="org-slide w-48 sm:w-56 md:w-64 shrink-0 px-2 transition-all duration-700">
-                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-700">
+                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-700">
                                     <img src="{% static 'core/orga/OH-2024.jpg' %}" alt="Open House Fasilkom UI 2024" class="w-full aspect-[4/3] object-cover">
                                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 text-white">
                                         <span class="text-[10px] font-mono uppercase tracking-wider text-gray-300 block">Open House Fasilkom UI · 2024</span>
@@ -272,7 +304,7 @@
 
                             <!-- 10. OH-2023.jpg -->
                             <div class="org-slide w-48 sm:w-56 md:w-64 shrink-0 px-2 transition-all duration-700">
-                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-700">
+                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-700">
                                     <img src="{% static 'core/orga/OH-2023.jpg' %}" alt="Open House Fasilkom UI 2023" class="w-full aspect-[4/3] object-cover">
                                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 text-white">
                                         <span class="text-[10px] font-mono uppercase tracking-wider text-gray-300 block">Open House Fasilkom UI · 2023</span>
@@ -281,9 +313,9 @@
                                 </div>
                             </div>
 
-                            <!-- 11. OH-2023 (1).jpg -->
+                            <!-- 11. FGS-2023.jpg -->
                             <div class="org-slide w-48 sm:w-56 md:w-64 shrink-0 px-2 transition-all duration-700">
-                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-700">
+                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-700">
                                     <img src="{% static 'core/orga/FGS-2023.jpg' %}" alt="Open House Fasilkom UI 2023 Session" class="w-full aspect-[4/3] object-cover">
                                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 text-white">
                                         <span class="text-[10px] font-mono uppercase tracking-wider text-gray-300 block">Open House Fasilkom UI · 2023</span>
@@ -294,7 +326,7 @@
 
                             <!-- 12. OH-2023-x-Microsoft.jpg -->
                             <div class="org-slide w-48 sm:w-56 md:w-64 shrink-0 px-2 transition-all duration-700">
-                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-700">
+                                <div class="slide-card relative overflow-hidden rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-700">
                                     <img src="{% static 'core/orga/OH-2023-x-Microsoft.jpg' %}" alt="Open House Fasilkom UI x Microsoft" class="w-full aspect-[4/3] object-cover">
                                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 text-white">
                                         <span class="text-[10px] font-mono uppercase tracking-wider text-gray-300 block">Open House Fasilkom UI · 2023</span>
@@ -308,13 +340,13 @@
 
                     <!-- Tombol Prev (<) -->
                     <button id="org-prev-btn" type="button" aria-label="Previous slide"
-                        class="absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 z-20 bg-white/95 hover:bg-black hover:text-white text-gray-900 border border-gray-200 w-8 h-8 sm:w-9 sm:h-9 rounded-full shadow-md flex items-center justify-center font-mono font-bold text-sm transition focus:outline-none cursor-pointer">
+                        class="absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 z-20 bg-white/95 dark:bg-neutral-900/95 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black text-gray-900 dark:text-white border border-gray-200 dark:border-neutral-700 w-8 h-8 sm:w-9 sm:h-9 rounded-full shadow-md flex items-center justify-center font-mono font-bold text-sm transition focus:outline-none cursor-pointer">
                         &lt;
                     </button>
 
                     <!-- Tombol Next (>) -->
                     <button id="org-next-btn" type="button" aria-label="Next slide"
-                        class="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 z-20 bg-white/95 hover:bg-black hover:text-white text-gray-900 border border-gray-200 w-8 h-8 sm:w-9 sm:h-9 rounded-full shadow-md flex items-center justify-center font-mono font-bold text-sm transition focus:outline-none cursor-pointer">
+                        class="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 z-20 bg-white/95 dark:bg-neutral-900/95 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black text-gray-900 dark:text-white border border-gray-200 dark:border-neutral-700 w-8 h-8 sm:w-9 sm:h-9 rounded-full shadow-md flex items-center justify-center font-mono font-bold text-sm transition focus:outline-none cursor-pointer">
                         &gt;
                     </button>
 
@@ -325,64 +357,64 @@
                 
                 <div class="space-y-10 sm:space-y-12 max-w-4xl">
                     <!-- BEM Fasilkom UI -->
-                    <div class="relative pl-6 sm:pl-8 border-l-2 border-gray-200">
-                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-gray-400"></div>
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-gray-200 dark:border-neutral-800">
+                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-gray-400 dark:bg-neutral-600"></div>
                         <div class="flex flex-col sm:flex-row sm:justify-between items-start mb-3 gap-1.5">
                             <div>
-                                <h3 class="text-lg sm:text-xl font-bold text-gray-900">Deputy 2 of Public Relations</h3>
-                                <p class="text-sm sm:text-md font-medium text-gray-600">Badan Eksekutif Mahasiswa Fasilkom UI</p>
+                                <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">Deputy 2 of Public Relations</h3>
+                                <p class="text-sm sm:text-md font-medium text-gray-600 dark:text-neutral-400">Badan Eksekutif Mahasiswa Fasilkom UI</p>
                             </div>
-                            <span class="text-xs font-mono bg-gray-100 px-2.5 py-1 rounded text-gray-500">Jul 2025 — Jan 2026</span>
+                            <span class="text-xs font-mono bg-gray-100 dark:bg-neutral-800 px-2.5 py-1 rounded text-gray-500 dark:text-neutral-400">Jul 2025 — Jan 2026</span>
                         </div>
-                        <ul class="list-disc list-outside ml-4 text-gray-600 text-sm space-y-2 leading-relaxed">
+                        <ul class="list-disc list-outside ml-4 text-gray-600 dark:text-neutral-400 text-sm space-y-2 leading-relaxed">
                             <li>Managed a cross-functional team to develop and implement Standard Operating Procedures (SOPs) for social media publications, ensuring workflow efficiency and consistency.</li>
                             <li>Co-organized and executed the inaugural launch event for the new board, successfully managing logistics and coordination to achieve the engagement of 150+ participants.</li>
                         </ul>
                     </div>
 
                     <!-- BETIS Fasilkom UI -->
-                    <div class="relative pl-6 sm:pl-8 border-l-2 border-gray-200">
-                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-gray-400"></div>
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-gray-200 dark:border-neutral-800">
+                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-gray-400 dark:bg-neutral-600"></div>
                         <div class="flex flex-col sm:flex-row sm:justify-between items-start mb-3 gap-1.5">
                             <div>
-                                <h3 class="text-lg sm:text-xl font-bold text-gray-900">Person in Charge of Public Relations</h3>
-                                <p class="text-sm sm:text-md font-medium text-gray-600">Bimbingan Belajar Gratis Fasilkom UI</p>
+                                <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">Person in Charge of Public Relations</h3>
+                                <p class="text-sm sm:text-md font-medium text-gray-600 dark:text-neutral-400">Bimbingan Belajar Gratis Fasilkom UI</p>
                             </div>
-                            <span class="text-xs font-mono bg-gray-100 px-2.5 py-1 rounded text-gray-500">Nov 2024 — Jun 2025</span>
+                            <span class="text-xs font-mono bg-gray-100 dark:bg-neutral-800 px-2.5 py-1 rounded text-gray-500 dark:text-neutral-400">Nov 2024 — Jun 2025</span>
                         </div>
-                        <ul class="list-disc list-outside ml-4 text-gray-600 text-sm space-y-2 leading-relaxed">
+                        <ul class="list-disc list-outside ml-4 text-gray-600 dark:text-neutral-400 text-sm space-y-2 leading-relaxed">
                             <li>Produced and launched 10+ content pieces with a cumulative reach of over 330k views, significantly boosting visibility and impact.</li>
                             <li>Successfully grew BETIS Fasilkom UI's Instagram followers by over 3,000, driving sustained audience engagement and community growth.</li>
                         </ul>
                     </div>
 
                     <!-- Open House Fasilkom UI -->
-                    <div class="relative pl-6 sm:pl-8 border-l-2 border-gray-200">
-                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-gray-400"></div>
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-gray-200 dark:border-neutral-800">
+                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-gray-400 dark:bg-neutral-600"></div>
                         <div class="flex flex-col sm:flex-row sm:justify-between items-start mb-3 gap-1.5">
                             <div>
-                                <h3 class="text-lg sm:text-xl font-bold text-gray-900">Expert Staff of Public Relations</h3>
-                                <p class="text-sm sm:text-md font-medium text-gray-600">Open House Fasilkom UI</p>
+                                <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">Expert Staff of Public Relations</h3>
+                                <p class="text-sm sm:text-md font-medium text-gray-600 dark:text-neutral-400">Open House Fasilkom UI</p>
                             </div>
-                            <span class="text-xs font-mono bg-gray-100 px-2.5 py-1 rounded text-gray-500">Jul 2024 — Nov 2024</span>
+                            <span class="text-xs font-mono bg-gray-100 dark:bg-neutral-800 px-2.5 py-1 rounded text-gray-500 dark:text-neutral-400">Jul 2024 — Nov 2024</span>
                         </div>
-                        <ul class="list-disc list-outside ml-4 text-gray-600 text-sm space-y-2 leading-relaxed">
+                        <ul class="list-disc list-outside ml-4 text-gray-600 dark:text-neutral-400 text-sm space-y-2 leading-relaxed">
                             <li>Coached 18 staff members to enhance their public speaking skills through training and feedback.</li>
                             <li>Established partnerships with over 80 schools across Indonesia for "Fasilkom Goes to School".</li>
                         </ul>
                     </div>
 
                     <!-- COMPFEST -->
-                    <div class="relative pl-6 sm:pl-8 border-l-2 border-gray-200">
-                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-gray-400"></div>
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-gray-200 dark:border-neutral-800">
+                        <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-gray-400 dark:bg-neutral-600"></div>
                         <div class="flex flex-col sm:flex-row sm:justify-between items-start mb-3 gap-1.5">
                             <div>
-                                <h3 class="text-lg sm:text-xl font-bold text-gray-900">Staff of Direct Marketing</h3>
-                                <p class="text-sm sm:text-md font-medium text-gray-600">COMPFEST</p>
+                                <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">Staff of Direct Marketing</h3>
+                                <p class="text-sm sm:text-md font-medium text-gray-600 dark:text-neutral-400">COMPFEST</p>
                             </div>
-                            <span class="text-xs font-mono bg-gray-100 px-2.5 py-1 rounded text-gray-500">Apr 2024 — Nov 2024</span>
+                            <span class="text-xs font-mono bg-gray-100 dark:bg-neutral-800 px-2.5 py-1 rounded text-gray-500 dark:text-neutral-400">Apr 2024 — Nov 2024</span>
                         </div>
-                        <ul class="list-disc list-outside ml-4 text-gray-600 text-sm space-y-2 leading-relaxed">
+                        <ul class="list-disc list-outside ml-4 text-gray-600 dark:text-neutral-400 text-sm space-y-2 leading-relaxed">
                             <li>Created marketing content that garnered over 200,000 total views across multiple platforms.</li>
                             <li>Served as Master of Ceremony for key COMPFEST events, featuring renowned guests such as Adhitia Sofyan.</li>
                         </ul>
@@ -396,24 +428,36 @@
         <section id="contact" class="py-16 sm:py-20 min-h-[50vh] flex flex-col justify-center">
             <div class="max-w-2xl mx-auto text-center space-y-5 sm:space-y-6">
                 <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Let's connect.</h2>
-                <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+                <p class="text-sm sm:text-base text-gray-600 dark:text-neutral-400 leading-relaxed">
                     Whether you want to talk about project/product managements, software platforms, application design workflows, or marketing metrics—drop me a message or explore my repositories.
                 </p>
                 <div class="pt-2 sm:pt-4 flex flex-col sm:flex-row flex-wrap justify-center items-stretch sm:items-center gap-3 sm:gap-4">
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aryagilang05@gmail.com" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        class="bg-black text-white font-medium px-6 py-3 rounded-md hover:bg-gray-800 transition tracking-wide text-sm">
+                        class="bg-black dark:bg-white text-white dark:text-black font-medium px-6 py-3 rounded-md hover:bg-gray-800 dark:hover:bg-neutral-200 transition tracking-wide text-sm">
                         aryagilang05@gmail.com
                     </a>
-                    <a href="https://www.linkedin.com/in/arya-gilang-p/" target="_blank" class="border border-gray-300 bg-white text-gray-700 font-medium px-6 py-3 rounded-md hover:bg-gray-50 transition text-sm">
+                    <a href="https://www.linkedin.com/in/arya-gilang-p/" target="_blank" class="border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300 font-medium px-6 py-3 rounded-md hover:bg-gray-50 dark:hover:bg-neutral-800 transition text-sm">
                         LinkedIn
                     </a>
-                    <a href="https://github.com/AryaGilangP" target="_blank" class="border border-gray-300 bg-white text-gray-700 font-medium px-6 py-3 rounded-md hover:bg-gray-50 transition text-sm">
+                    <a href="https://github.com/AryaGilangP" target="_blank" class="border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300 font-medium px-6 py-3 rounded-md hover:bg-gray-50 dark:hover:bg-neutral-800 transition text-sm">
                         GitHub Profile
                     </a>
-                    <a href="https://gitlab.cs.ui.ac.id/arya.gilang" target="_blank" class="border border-gray-300 bg-white text-gray-700 font-medium px-6 py-3 rounded-md hover:bg-gray-50 transition text-sm">
+                    <a href="https://gitlab.cs.ui.ac.id/arya.gilang" target="_blank" class="border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300 font-medium px-6 py-3 rounded-md hover:bg-gray-50 dark:hover:bg-neutral-800 transition text-sm">
                         CSUI GitLab
+                    </a>
+                    <a href="https://open.spotify.com/user/31kbs3ahkvgili6bn2eeexg3u6a4?si=MBrQeK-fQcmvm3MaDGcWaA&utm_source=copy-link&sci=spotify%3Acard-config%3A2eo9S2bNYEUCpLUQYKqCEz" target="_blank" class="border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300 font-medium px-6 py-3 rounded-md hover:bg-gray-50 dark:hover:bg-neutral-800 transition text-sm">
+                        Spotify
+                    </a>
+                    <a href="https://boxd.it/cZfa7" target="_blank" class="border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300 font-medium px-6 py-3 rounded-md hover:bg-gray-50 dark:hover:bg-neutral-800 transition text-sm">
+                        LetterBoxd
+                    </a>
+                    <a href="https://myanimelist.net/profile/RizzNoLimit" target="_blank" class="border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300 font-medium px-6 py-3 rounded-md hover:bg-gray-50 dark:hover:bg-neutral-800 transition text-sm">
+                        MyAnimeList
+                    </a>
+                    <a href="https://www.goodreads.com/friend/i?invite_token=NDFkM2YyNTQtY2EzOS00MWEzLTkzYzQtNzk5ZTg5NDdiNTAz" target="_blank" class="border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300 font-medium px-6 py-3 rounded-md hover:bg-gray-50 dark:hover:bg-neutral-800 transition text-sm">
+                        GoodReads
                     </a>
                 </div>
             </div>
@@ -422,13 +466,24 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-200 bg-white py-8 px-4 text-center text-xs font-mono text-gray-400">
-        &copy; 2026 Arya Gilang Prasetya. Built with Django & Tailwind CSS.
+    <footer class="border-t border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 py-8 px-4 text-center text-xs font-mono text-gray-400 dark:text-neutral-500 transition-colors duration-300">
+        &copy; 2026 Arya Gilang Prasetya. Built with Love.
     </footer>
 
-    <!-- Scripts: Mobile Menu & Center-Mode Multi-Slide Carousel -->
+    <!-- Scripts: Theme Toggle, Mobile Menu & Center-Mode Carousel -->
     <script>
-        // 1. Mobile Menu Toggle
+        // 1. Dark Mode Toggle
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        themeToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                updateCarouselPosition();
+            });
+        });
+
+        // 2. Mobile Menu Toggle
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -436,7 +491,7 @@
         btn.addEventListener('click', () => menu.classList.toggle('hidden'));
         mobileLinks.forEach(link => link.addEventListener('click', () => menu.classList.add('hidden')));
 
-        // 2. Center-Mode Organizational Carousel
+        // 3. Center-Mode Organizational Carousel
         const wrapper = document.getElementById('org-carousel-wrapper');
         const track = document.getElementById('org-carousel-track');
         const slides = Array.from(track.children);
@@ -444,16 +499,23 @@
         const prevBtn = document.getElementById('org-prev-btn');
         const dotsContainer = document.getElementById('org-carousel-dots');
 
-        let currentIndex = 2; // Mulai dari tengah-awal agar kartu kiri & kanan langsung terlihat penuh
+        let currentIndex = 2;
         let autoSlideTimer;
         let startX = 0;
 
-        // Buat dots indikator
+        function getDotClass(isActive) {
+            return `h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                isActive 
+                ? 'w-5 bg-black dark:bg-white' 
+                : 'w-1.5 bg-gray-300 dark:bg-neutral-700 hover:bg-gray-400 dark:hover:bg-neutral-500'
+            }`;
+        }
+
         slides.forEach((_, idx) => {
             const dot = document.createElement('button');
             dot.type = 'button';
             dot.ariaLabel = `Slide ${idx + 1}`;
-            dot.className = `h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === currentIndex ? 'w-5 bg-black' : 'w-1.5 bg-gray-300 hover:bg-gray-400'}`;
+            dot.className = getDotClass(idx === currentIndex);
             dot.addEventListener('click', () => {
                 goToSlide(idx);
                 resetAutoSlide();
@@ -468,29 +530,24 @@
             const activeSlide = slides[currentIndex];
             const slideWidth = activeSlide.offsetWidth;
 
-            // Posisikan slide aktif tepat di tengah viewport
             const centerOffset = (containerWidth / 2) - (slideWidth / 2) - (currentIndex * slideWidth);
             track.style.transform = `translateX(${centerOffset}px)`;
 
-            // Berikan efek pop-up (lebih besar & sedikit terangkat) untuk foto di tengah
             slides.forEach((slide, idx) => {
                 const card = slide.querySelector('.slide-card');
                 if (idx === currentIndex) {
                     slide.classList.remove('scale-90', 'opacity-60');
                     slide.classList.add('scale-105', 'opacity-100', 'z-10', '-translate-y-2');
-                    card.classList.add('shadow-lg', 'ring-1', 'ring-black/15');
+                    card.classList.add('shadow-lg', 'ring-1', 'ring-black/15', 'dark:ring-white/20');
                 } else {
                     slide.classList.remove('scale-105', 'opacity-100', 'z-10', '-translate-y-2');
                     slide.classList.add('scale-90', 'opacity-60');
-                    card.classList.remove('shadow-lg', 'ring-1', 'ring-black/15');
+                    card.classList.remove('shadow-lg', 'ring-1', 'ring-black/15', 'dark:ring-white/20');
                 }
             });
 
-            // Perbarui indikator dots
             dots.forEach((dot, idx) => {
-                dot.className = `h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    idx === currentIndex ? 'w-5 bg-black' : 'w-1.5 bg-gray-300 hover:bg-gray-400'
-                }`;
+                dot.className = getDotClass(idx === currentIndex);
             });
         }
 
@@ -508,7 +565,7 @@
         function startAutoSlide() {
             autoSlideTimer = setInterval(() => {
                 goToSlide(currentIndex + 1);
-            }, 5500); // 50% lebih lambat (5.5 detik per perpindahan)
+            }, 5500);
         }
 
         function stopAutoSlide() {
@@ -530,14 +587,10 @@
             resetAutoSlide();
         });
 
-        // Jeda autoplay saat cursor diarahkan ke carousel
         wrapper.addEventListener('mouseenter', stopAutoSlide);
         wrapper.addEventListener('mouseleave', startAutoSlide);
-
-        // Responsif saat layar di-resize
         window.addEventListener('resize', updateCarouselPosition);
 
-        // Dukungan swipe layar sentuh di HP
         wrapper.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             stopAutoSlide();
@@ -551,7 +604,6 @@
             startAutoSlide();
         });
 
-        // Inisialisasi saat halaman dimuat
         window.addEventListener('load', () => {
             updateCarouselPosition();
             startAutoSlide();
